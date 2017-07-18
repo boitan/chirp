@@ -9,3 +9,4 @@ from message.forms import RegisterForm
 class RegisterView(CreateView):
     form_class = RegisterForm
     template_name = 'register.html'
+    success_url = "/"
