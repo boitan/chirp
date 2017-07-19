@@ -12,6 +12,9 @@ class Message(TimestampModel):
     user = models.ForeignKey(User)
     status = models.TextField(null=False, max_length=140, blank=False)
 
+    def __str__(self):
+        return self.status
+
 
 class Like(TimestampModel):
     user = models.ForeignKey(User)
