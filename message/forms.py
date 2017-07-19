@@ -8,7 +8,7 @@ class RegisterForm(forms.ModelForm):
         model = User
         fields = ['first_name', 'last_name', 'username', 'email', 'password']
         widgets = {
-            "password": forms.PasswordInput
+            "password": forms.PasswordInput(attrs={"class": "password-field"}),
         }
     retype_password = forms.CharField(widget=forms.PasswordInput)
 
