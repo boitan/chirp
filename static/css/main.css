@@ -1,8 +1,9 @@
 h2 {
     color: red;
 }
-.register-form {
-    margin-top: 200px;
+
+.container[role=main] {
+    margin-top: 75px;
 }
 
 .chirp {
@@ -13,10 +14,14 @@ h2 {
     font-size: 16px;
 }
 
-.row-container {
-margin-top: 100px;
-}
-
 .error-field {
     border-color: red;
+}
+
+.profile-icon {
+    padding: 20px;
+    border: 1px solid #383838;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: 30px;
 }

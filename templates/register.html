@@ -25,7 +25,7 @@
     </p>
     <p>
         <label for="id_password">Password:</label>
-        <input type="password" name="password" class="password-field" maxlength="128" required id="id_password" class="{% if form.password.errors %} error-field {% endif %}"/>
+        <input type="password" name="password" maxlength="128" required id="id_password" class="{% if form.password.errors %} error-field {% endif %}"/>
         {{ form.password.errors }}
     </p>
     <p>
