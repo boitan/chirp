@@ -5,20 +5,36 @@
     <div class="col-xs-12 col-sm-12 col-md-3">
         <div class="panel panel-default">
             <div class="panel-body">
-                <span class="glyphicon glyphicon-user profile-icon" aria-hidden="true"></span>
-                <span><input type="submit" class="btn btn-primary right" value="Follow"></span><br>
-                <span><a href = {% url 'my-profile' %}>@{{ object.username }}</span></a><br>
+                <span class="glyphicon glyphicon-user profile-icon" aria-hidden="true"></span><br>
+                <span class="bawld"><a href = {% url 'my-profile' %}>@{{ object.username }}</span></a><br>
                 <span class="bawld">{{ object.first_name }} {{ object.last_name }}</span><br>
-                <span class="marleft">{{ object.email }}</span>
-                {% if request.user !=object %}
-                <form>
-                    <button type="submit" class="btn btn-primary follow">Follow</button>
-                </form>
-                { % endif% }
-
-
+                <span class="marleft">{{ object.email }}</span><br>
+                {% if request.user != object %}
+                    {% if object in following %}
+                        <form method="post" action="{% url 'unfollow_user' object.username %}">
+                            {% csrf_token %}
+                                <button type="submit" class="btn btn-primary">Unfollow</button>
+                        </form>
+                    {% else %}
+                        <form method="post" action="{% url 'follow_user' object.username %}">
+                            {% csrf_token %}
+                                <button type="submit" class="btn btn-primary">Follow</button>
+                        </form>
+                {% endif %}
+            {% endif %}
             </div>
         </div>
+
+        {% if messages %}
+             <div class="alert alert-success" role="alert">
+                <p class="messages">
+                    {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
     </div>
 
     <div class="col-xs-12 col-sm-12 col-md-9">
