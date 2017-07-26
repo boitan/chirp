@@ -1,6 +1,10 @@
+from builtins import ValueError
+
 from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+
+from message.models import Message
 
 
 class RegisterForm(forms.ModelForm):
@@ -16,7 +20,7 @@ class RegisterForm(forms.ModelForm):
         password = self.cleaned_data['password']
         retype_password = self.cleaned_data['retype_password']
         if password != retype_password:
-            raise ValidationError("The two passwords do not match")
+            raise ValidationError("The two passwords do not match!")
         return retype_password
 
     def save(self, commit=True):
@@ -25,3 +29,8 @@ class RegisterForm(forms.ModelForm):
         if commit:
             new_user.save()
         return new_user
+
+class MessageForm(forms.ModelForm):
+    class Meta:
+        model = Message
+        fields = ["user", "status"]
