@@ -42,10 +42,12 @@
                             <small>{{ message.created }}</small>
                         </p>
                         <p>{{ message }}</p>
-                   <button class="like-message">
+                   <button class="like-message" data-messageid="{{ message.id}}"
+                           {% if request.user in message.like_users %}style="color:green" {% endif %}>
                        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
                    </button>
-                    <button class="dislike-message">
+                    <button class="dislike-message" data-messageid="{{ message.id}}"
+                    {% if request.user in message.dislike_users %}style="color:red" {% endif %}>
                        <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
                    </button>
                     </div>
